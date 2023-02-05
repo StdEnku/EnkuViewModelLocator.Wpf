@@ -13,10 +13,11 @@
 		<Description>A library to solve the problem of using a DI container in a WPF application, which requires writing to a code-behind to tie a ViewModel to a View's DataContext.</Description>
 		<Copyright>© 2023 StdEnku</Copyright>
 		<PackageProjectUrl>https://github.com/StdEnku/EnkuViewModelLocator.Wpf</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile></PackageReadmeFile>
 		<RepositoryUrl>https://github.com/StdEnku/EnkuViewModelLocator.Wpf</RepositoryUrl>
 		<PackageTags>MVVM;WPF;C#;</PackageTags>
 		<PackageIcon>logo.png</PackageIcon>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,7 +34,7 @@
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
 		</None>
-		<None Include="..\README.md">
+		<None Include="..\LICENSE">
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
 		</None>
