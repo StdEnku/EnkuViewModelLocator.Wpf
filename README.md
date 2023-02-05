@@ -1,23 +1,25 @@
 # EnkuViewModelLocator.Wpf
 
-本ライブラリは、WPFアプリケーションで[ここの例](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/ioc)のようにDIコンテナを使用する場合。<br/>ViewのDataContextにViewModelを紐付けるにはコードビハインドへの記述が<br/>必要になってしまう問題を解決するために[IncrementalSourceGenerator](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.md)を使用して開発されたライブラリです。
+This library was developed to solve the problem of using a DI container in a WPF application, as shown in the [example here](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/ioc), where a code-behind is required to attach a ViewModel to a View's DataContext. [IncrementalSourceGenerator](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.md) to solve this problem.
 
-# 使用方法
+[日本語版README.md](./README-jp.md)
 
-## 1. 準備
+# How to use
 
-> 本サンプルはリポジトリ内のSampleAppフォルダ内に全コードが含まれています。
+## 1. reserve
+
+> This sample contains all code in the SampleApp folder in the repository.
 >
-> また、DIコンテナにはMicrosoft.Extensions.DependencyInjectionを使用しています。
+> Also, the DI container uses Microsoft.Extensions.DependencyInjection.
 
-まずNugetにて
+First, please install
 
 - [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection)
 - [EnkuViewModelLocator.Wpf](https://www.nuget.org/packages/EnkuViewModelLocator.Wpf)
 
-をインストールして下さい。
+at Nuget.
 
-その後、[ここの例](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/ioc)を参考にAppクラスのコードビハインドを下記のように修正して下さい。
+Then, modify the code-behind of the App class as shown below, referring to the [example here](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/ioc).
 
 ```c#
 // ellipsis usings
@@ -42,9 +44,9 @@ public sealed partial class App : Application
 }
 ```
 
-## 2. AppクラスにIDiApplicationインターフェースを継承
+## 2. App class inherits IDiApplication interface
 
-上記で修正したAppクラスに<br/>`EnkuViewModelLocator.Wpf.IDiApplication`インターフェースを継承させて、<br/>ConfigureServicesメソッドにすべてのViewModelを検索して<br/>DIコンテナに登録する処理を記載してください。<br/>
+Make the App class modified above inherit the `EnkuViewModelLocator.Wpf.IDiApplication` interface and include in the ConfigureServices method a process to search for all ViewModels and register them in the DI container Please use the `ConfigureServices` method.
 
 ```c#
 // ellipsis usings
@@ -81,9 +83,9 @@ public sealed partial class App : Application, IDiApplication // ← Add
 }
 ```
 
-## 3. ViewModelの作成とViewModel属性の添付
+## 3. Attaching ViewModel attributes
 
-ViewModelを作成後下記のようにEnkuViewModelLocator.Wpf.ViewModelAttributeを添付してください。
+After creating the ViewModel, attach the EnkuViewModelLocator.Wpf.ViewModelAttribute as follows.
 
 ```c#
 using System;
@@ -96,9 +98,9 @@ public class FirstPageViewModel : INotifyPropertyChanged
 }
 ```
 
-こうすることで自動的にそのViewModelがDIコンテナに登録されて<br/>そのViewModelのインスタンスを取得するためのViewModelsクラスが同じ名前空間に生成されます。
+This will automatically register the ViewModel in the DI container and generate a ViewModels class in the same namespace to obtain an instance of that ViewModel.
 
-また、ViewModelの寿命は規定値ではTransientとなっていますが<br/>下記のように記述することでSingletonにすることも可能です。
+Also, the lifespan of a ViewModel is set to Transient by default, but it can be set to Singleton by writing the following.
 
 ```c#
 using System;
@@ -111,9 +113,9 @@ public class FirstPageViewModel : INotifyPropertyChanged
 }
 ```
 
-## 4. ViewのDataContextにViewModelを指定
+## 4. Specify ViewModel for the View's DataContext
 
-Viewに上記で作成したViewModelを紐付けるには<br/>下記のようにViewModelと同じ名前空間に生成されたViewModelsクラス内にある<br/>ViewModelと同名のプロパティの値をViewのDataContextに指定すれば可能です。
+To attach the ViewModel created above to a View, specify the value of the property with the same name as the ViewModel in the ViewModels class generated in the same namespace as the ViewModel in the View's DataContext as shown below.
 
 ```xaml
 <Page ~ellipsis~
@@ -126,40 +128,40 @@ Viewに上記で作成したViewModelを紐付けるには<br/>下記のよう�
 
 
 
-# 本ライブラリで登場するクラスやインターフェース
+# Classes and interfaces appearing in this library
 
-## IDiApplication インターフェース
+## IDiApplication Interface
 
-名前空間 : EnkuViewModelLocator.Wpf<br/>備考 : セッターのないSystem.IServiceProvider型のServicesプロパティのみを持ち、<br/>WPFアプリケーションのひな型のAppクラスにて実装することを想定したインターフェース。
+namespace : EnkuViewModelLocator.Wpf<br/>remarks : An interface that has only the Services property of the System.IServiceProvider type without a setter, and is intended to be implemented in the App class of the WPF application template.
 
-## ViewModel 属性
+## ViewModel Attribute
 
-名前空間 : EnkuViewModelLocator.Wpf<br/>備考 : 下記ViewModelsクラスを生成するためのマーカー属性。<br/>コンストラクタにてターゲットのViewModelのServiceLifeTimeを指定できます。<br/>コンストラクタの既定値はServiceLifeTime.Transientです。
+namespace : EnkuViewModelLocator.Wpf<br/>remarks : Marker attribute to generate the following ViewModels class. ServiceLifeTime of the target ViewModel can be specified in the constructor. The default value of the constructor is ServiceLifeTime.Transient.
 
 ## ServiceLifeTime Enum
 
-名前空間 : EnkuViewModelLocator.Wpf.ViewModelAttribute<br/>備考 : ターゲットのViewModelのServiceLifeTimeを表すEnum値です。<br/>メンバはTransientとSingletonです。
+namespace : EnkuViewModelLocator.Wpf.ViewModelAttribute<br/>remarks : Enum value representing the ServiceLifeTime of the target ViewModel. Members are Transient and Singleton.
 
-## SearchViewModelService 静的クラス
+## SearchViewModelService Static Class
 
-名前空間 : EnkuViewModelLocator.Wpf<br/>備考 : 引数で指定したアセンブリ内からViewModel属性の添付された<br/>すべてのクラスを探すためのメソッドを持つ静的クラス。
+namespace : EnkuViewModelLocator.Wpf<br/>remarks : A static class with methods to find all classes with attached ViewModel attributes in the assembly specified by the argument.
 
-メソッドのシグネチャ : 
+Method Signatures : 
 
 > public static System.Collections.Generic.IEnumerable<VmTypeWithServiceLifeTime> FromAssembly(System.Assembly assembly)
 
-## VmTypeWithServiceLifeTime クラス
+## VmTypeWithServiceLifeTime Class
 
-名前空間 : EnkuViewModelLocator.Wpf<br/>備考 : SearchViewModelService.FromAssemblyメソッドの戻り値として使用される<br/>ViewModelの型情報と寿命情報を保持するDTOクラス。
+namespace : EnkuViewModelLocator.Wpf<br/>remarks : DTO class that holds the ViewModel type and lifetime information used as the return value of the SearchViewModelService.FromAssembly method.
 
-| プロパティ名  | 型                                                          | 備考                |
-| ------------- | ----------------------------------------------------------- | ------------------- |
-| ViewModelType | System.Type                                                 | ViewModelの型情報   |
-| LifeTime      | EnkuViewModelLocator.Wpf.ViewModelAttribute.ServiceLifeTime | ViewModelの寿命情報 |
+| プロパティ名  | 型                                                          | 備考                           |
+| ------------- | ----------------------------------------------------------- | ------------------------------ |
+| ViewModelType | System.Type                                                 | ViewModel type information     |
+| LifeTime      | EnkuViewModelLocator.Wpf.ViewModelAttribute.ServiceLifeTime | ViewModel Lifetime Information |
 
-## ViewModels 静的クラス
+## ViewModels Static Class
 
-名前空間 : ターゲットのViewModelと同じ名前空間<br/>備考 : ViewModel属性の付いたクラスを取得するための静的クラス。<br/>メンバはDIコンテナから生成したオブジェクトを返す<br/>ViewModel名と同じstaticプロパティが逐次的に追加されていく。
+namespace : Same namespace as the target ViewModel<br/>remarks : Static class for retrieving classes with ViewModel attributes. Members are successively added with the same static property as the ViewModel name that returns the object generated from the DI container.
 
 
 
