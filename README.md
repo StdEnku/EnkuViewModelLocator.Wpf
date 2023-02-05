@@ -49,7 +49,7 @@ public sealed partial class App : Application
 ```c#
 // ellipsis usings
 using Microsoft.Extensions.DependencyInjection;
-using EnkuViewModelLocator.Wpf;
+using EnkuViewModelLocator.Wpf; // ← Add
 
 public sealed partial class App : Application, IDiApplication // ← Add
 {
