@@ -79,7 +79,7 @@ namespace EnkuViewModelLocator.Wpf
 
     private static void Emit(SourceProductionContext cxt, ViewModelInfo viewModelInfo)
     {
-        cxt.AddSource($"{viewModelInfo.ClassName}_vml.g.cs", $$"""
+        cxt.AddSource($"{viewModelInfo.NameSpace}.{viewModelInfo.ClassName}_vml.g.cs", $$"""
 namespace {{viewModelInfo.NameSpace}}
 {
     using EnkuViewModelLocator.Wpf;
