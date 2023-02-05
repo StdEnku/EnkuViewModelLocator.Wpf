@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "SampleApp\SampleApp.csproj", "{B9E1D64C-4CAC-4A8E-A23D-14C8C94EEED5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnkuViewModelLocator.Wpf", "EnkuViewModelLocator.Wpf\EnkuViewModelLocator.Wpf.csproj", "{11ABE3F4-013B-4E35-9D5B-32594772AFED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9E1D64C-4CAC-4A8E-A23D-14C8C94EEED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E1D64C-4CAC-4A8E-A23D-14C8C94EEED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E1D64C-4CAC-4A8E-A23D-14C8C94EEED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E1D64C-4CAC-4A8E-A23D-14C8C94EEED5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11ABE3F4-013B-4E35-9D5B-32594772AFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11ABE3F4-013B-4E35-9D5B-32594772AFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11ABE3F4-013B-4E35-9D5B-32594772AFED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11ABE3F4-013B-4E35-9D5B-32594772AFED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {239E51DF-2BF1-4D4C-8037-C449F5414EEA}
+	EndGlobalSection
+EndGlobal
