@@ -6,7 +6,7 @@ using SampleApp.Services;
 using System;
 using EnkuViewModelLocator.Wpf;
 
-[ViewModel(ViewModelAttribute.ServiceLifeTime.Singleton)]
+[ViewModel]
 public partial class FirstPageViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
