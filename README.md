@@ -126,7 +126,9 @@ To attach the ViewModel created above to a View, specify the value of the proper
 </Page>
 ```
 
-
+> [important point]
+>
+> In this library, it is not possible to register a ViewModel that uses the Generic syntax because the ViewModel class is registered in the DI container using attributes at the definition stage.
 
 # Classes and interfaces appearing in this library
 
