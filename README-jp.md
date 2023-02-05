@@ -20,7 +20,7 @@
 その後、[ここの例](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/ioc)を参考にAppクラスのコードビハインドを下記のように修正して下さい。
 
 ```c#
-// ellipsis usings
+// その他usingは省略
 using Microsoft.Extensions.DependencyInjection;
 
 public sealed partial class App : Application
@@ -38,6 +38,8 @@ public sealed partial class App : Application
     private static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
+        // ViewModelやServiceの登録
+        return services.BuildServiceProvider();
     }
 }
 ```
@@ -47,11 +49,11 @@ public sealed partial class App : Application
 上記で修正したAppクラスに<br/>`EnkuViewModelLocator.Wpf.IDiApplication`インターフェースを継承させて、<br/>ConfigureServicesメソッドにすべてのViewModelを検索して<br/>DIコンテナに登録する処理を記載してください。<br/>
 
 ```c#
-// ellipsis usings
+// その他usingは省略
 using Microsoft.Extensions.DependencyInjection;
-using EnkuViewModelLocator.Wpf; // ← Add
+using EnkuViewModelLocator.Wpf; // ← 追記
 
-public sealed partial class App : Application, IDiApplication // ← Add
+public sealed partial class App : Application, IDiApplication // ← 追記
 {
     public App()
     {
@@ -67,7 +69,7 @@ public sealed partial class App : Application, IDiApplication // ← Add
     {
         var services = new ServiceCollection();
         
-        // ↓Add
+        // ↓追記
         var assembly = Assembly.GetExecutingAssembly();
         var vmWithLifeTime = SearchViewModelService.FromAssembly(assembly);
         foreach (var i in vmWithLifeTime)
@@ -77,6 +79,8 @@ public sealed partial class App : Application, IDiApplication // ← Add
             else
                 services.AddSingleton(i.ViewModelType);
         }
+        
+        return services.BuildServiceProvider();
     }
 }
 ```
@@ -87,12 +91,12 @@ ViewModelを作成後下記のようにEnkuViewModelLocator.Wpf.ViewModelAttribu
 
 ```c#
 using System;
-using EnkuViewModelLocator.Wpf; //←Add
+using EnkuViewModelLocator.Wpf; //←追記
 
-[ViewModel] //←Add
+[ViewModel] //←追記
 public class FirstPageViewModel : INotifyPropertyChanged
 {
-    // ellipsis
+    // 省略
 }
 ```
 
@@ -107,7 +111,7 @@ using EnkuViewModelLocator.Wpf;
 [ViewModel(ViewModelAttribute.ServiceLifeTime.Singleton)]
 public class FirstPageViewModel : INotifyPropertyChanged
 {
-    // ellipsis
+    // 省略
 }
 ```
 
@@ -116,11 +120,11 @@ public class FirstPageViewModel : INotifyPropertyChanged
 Viewに上記で作成したViewModelを紐付けるには<br/>下記のようにViewModelと同じ名前空間に生成されたViewModelsクラス内にある<br/>ViewModelと同名のプロパティの値をViewのDataContextに指定すれば可能です。
 
 ```xaml
-<Page ~ellipsis~
+<Page ~省略~
       xmlns:vm="clr-namespace:To.ViewModel.Namespace"
       DataContext="{x:Static vm:ViewModels.FirstPageViewModel}">
 
-    <!--ellipsis-->
+    <!--省略-->
 </Page>
 ```
 

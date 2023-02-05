@@ -42,6 +42,8 @@ public sealed partial class App : Application
     private static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
+        // Register services or viewmodels
+        return services.BuildServiceProvider();
     }
 }
 ```
@@ -81,6 +83,8 @@ public sealed partial class App : Application, IDiApplication // ← Add
             else
                 services.AddSingleton(i.ViewModelType);
         }
+        
+        return services.BuildServiceProvider();
     }
 }
 ```
