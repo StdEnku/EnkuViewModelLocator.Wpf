@@ -2,7 +2,9 @@
 
 This library was developed to solve the problem of using a DI container in a WPF application, as shown in the [example here](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/ioc), where a code-behind is required to attach a ViewModel to a View's DataContext. [IncrementalSourceGenerator](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.md) to solve this problem.
 
-[日本語版README.md](./README-jp.md)
+[日本語版README.md](./README-jp.md)  
+
+![Nuget](https://img.shields.io/nuget/dt/EnkuViewModelLocator.Wpf?color=purple&logo=Nuget&logoColor=blue&style=social)
 
 # How to use
 
