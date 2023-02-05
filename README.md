@@ -154,7 +154,7 @@ Method Signatures :
 
 namespace : EnkuViewModelLocator.Wpf<br/>remarks : DTO class that holds the ViewModel type and lifetime information used as the return value of the SearchViewModelService.FromAssembly method.
 
-| プロパティ名  | 型                                                          | 備考                           |
+| Property Name  | Type                                                          | Remarks                           |
 | ------------- | ----------------------------------------------------------- | ------------------------------ |
 | ViewModelType | System.Type                                                 | ViewModel type information     |
 | LifeTime      | EnkuViewModelLocator.Wpf.ViewModelAttribute.ServiceLifeTime | ViewModel Lifetime Information |
