@@ -27,7 +27,7 @@ public sealed partial class App : Application
 {
     public App()
     {
-        Services = ConfigureServices();
+        this.Services = ConfigureServices();
         this.InitializeComponent();
     }
     
@@ -46,7 +46,7 @@ public sealed partial class App : Application
 
 ## 2. AppクラスにIDiApplicationインターフェースを継承
 
-上記で修正したAppクラスに<br/>`EnkuViewModelLocator.Wpf.IDiApplication`インターフェースを継承させて、<br/>ConfigureServicesメソッドにすべてのViewModelを検索して<br/>DIコンテナに登録する処理を記載してください。<br/>
+上記で修正したAppクラスに<br/>`EnkuViewModelLocator.Wpf.IDiApplication`インターフェースを継承させて、<br/>ConfigureServicesメソッドにすべてのViewModelを検索して<br/>DIコンテナに登録する処理を記載してください。<br/>下記コード内にはすでにIDiApplicationのメンバであるServicesプロパティが実装されているので<br/>追記するメンバはありません。
 
 ```c#
 // その他usingは省略
@@ -57,7 +57,7 @@ public sealed partial class App : Application, IDiApplication // ← 追記
 {
     public App()
     {
-        Services = ConfigureServices();
+        this.Services = ConfigureServices();
         this.InitializeComponent();
     }
     

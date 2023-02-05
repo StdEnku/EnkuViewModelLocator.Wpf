@@ -31,7 +31,7 @@ public sealed partial class App : Application
 {
     public App()
     {
-        Services = ConfigureServices();
+        this.Services = ConfigureServices();
         this.InitializeComponent();
     }
     
@@ -50,7 +50,7 @@ public sealed partial class App : Application
 
 ## 2. App class inherits IDiApplication interface
 
-Make the App class modified above inherit the `EnkuViewModelLocator.Wpf.IDiApplication` interface and include in the ConfigureServices method a process to search for all ViewModels and register them in the DI container Please use the `ConfigureServices` method.
+Make the App class modified above inherit the `EnkuViewModelLocator.Wpf.IDiApplication` interface and include in the ConfigureServices method a process to search for all ViewModels and register them in the DI container Please use the `ConfigureServices` method.<br/>In the code below, the Services property, a member of IDiApplication, is already implemented, so there are no members to be added.
 
 ```c#
 // ellipsis usings
@@ -61,7 +61,7 @@ public sealed partial class App : Application, IDiApplication // ← Add
 {
     public App()
     {
-        Services = ConfigureServices();
+        this.Services = ConfigureServices();
         this.InitializeComponent();
     }
     
