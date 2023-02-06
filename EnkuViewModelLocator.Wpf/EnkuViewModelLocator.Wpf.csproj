@@ -18,7 +18,7 @@
 		<PackageTags>MVVM;WPF;C#;</PackageTags>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
